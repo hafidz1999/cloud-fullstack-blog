@@ -1,27 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>My Cloud Blog</title>
-
-    <!-- Connect external CSS -->
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <title>Project Documentation</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <!-- Navigation bar -->
-    <nav>
-        <a href="index.html">Home</a> |
-        <a href="projects.html">Projects</a> |
-        <a href="about.html">About</a> |
-        <a href="visitors.html">Visitors</a> |
-        <a href="docs.html">Docs</a>
-    </nav>
+<nav>
+  <a href="index.html">Home</a> |
+  <a href="projects.html">Projects</a> |
+  <a href="about.html">About</a> |
+  <a href="visitors.html">Visitors</a> |
+  <a href="docs.html">Docs</a>
+</nav>
 
-    <!-- Main page content -->
-    <h1>Documentations</h1>
-    <p>This is my cloud full-stack blog project documentations page.</p>
+<h1>Cloud Full-Stack Blog — Documentation</h1>
 
-    <script src="js/visit.js"></script>
+<hr>
+
+<h2>Project Overview</h2>
+<p>
+This project is a cloud-deployed full-stack blog application built as a final
+Cloud Engineering project. The application consists of a static frontend and a
+RESTful backend deployed on Google Cloud Run. It records visitor traffic and
+displays statistics using a cloud-native database.
+</p>
+
+<p>
+The main goal of this project is to demonstrate containerization, serverless
+deployment, CI/CD automation, and cloud-native monitoring.
+</p>
+
+<hr>
+
+<h2>Architecture</h2>
+
+<pre>
+Browser
+  ↓
+Frontend (Cloud Run, Nginx)
+  ↓ HTTP
+Backend API (Cloud Run, Flask)
+  ↓
+Firestore (NoSQL Database)
+</pre>
+
+<p>
+The frontend is served as static files using Nginx on Cloud Run. JavaScript in the
+frontend calls backend REST endpoints to record visits and retrieve statistics.
+The backend stores visit data in Google Firestore.
+</p>
+
+<hr>
+
+<h2>CI/CD Pipeline</h2>
+
+<p>
+This project uses GitHub Actions to automate deployments. On every push to the
+<code>main</code> branch:
+</p>
+
+<ul>
+  <li>The backend service is built and deployed to Cloud Run</li>
+  <li>The frontend service is built and deployed to Cloud Run</li>
+</ul>
+
+<p>
+GitHub Actions authenticates to Google Cloud using a service account stored as a
+repository secret. This ensures no credentials are committed to the repository.
+</p>
+
+<hr>
+
+<h2>Monitoring & Logging</h2>
+
+<p>
+Because the application is deployed on Cloud Run, logs and metrics are collected
+automatically by Google Cloud. A custom Cloud Monitoring dashboard was created
+to observe:
+</p>
+
+<ul>
+  <li>Request count (traffic)</li>
+  <li>Request latency</li>
+  <li>Error rates (5xx responses)</li>
+</ul>
+
+<p>
+This allows basic operational visibility without installing any monitoring
+agents.
+</p>
+
+<hr>
+
+<h2>Links</h2>
+
+<ul>
+  <li>
+    GitHub Repository:
+    <a href="https://github.com/hafidz1999/cloud-fullstack-blog" target="_blank">
+      View source code
+    </a>
+  </li>
+  <li>
+    Frontend (Cloud Run):
+    <a href="https://blog-frontend-723423022255.asia-southeast1.run.app" target="_blank">
+      Live website
+    </a>
+  </li>
+  <li>
+    Backend API (Cloud Run):
+    <a href="https://blog-backend-723423022255.asia-southeast1.run.app" target="_blank">
+      API endpoint
+    </a>
+  </li>
+</ul>
+
+<hr>
+
+<p><em>End of documentation.</em></p>
+
 </body>
 </html>
